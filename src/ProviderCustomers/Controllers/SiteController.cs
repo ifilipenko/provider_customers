@@ -101,7 +101,7 @@ namespace ProviderCustomers.Controllers
             var plans = _db.HostingPlans.ToList();
             var empty = new[] {new HostingPlanViewModel(null, "Not specified")};
             return empty.Concat(plans.OrderBy(p => p.Name)
-                                     .Select(p => new HostingPlanViewModel(p.Id, p.Name)))
+                                     .Select(p => new HostingPlanViewModel(p)))
                         .ToArray();
         }
     }
