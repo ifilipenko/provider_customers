@@ -2,5 +2,5 @@
 2. Open solution file in Visual Studio
 3. Build solution for download all required packages
 4. Open package manager console (Tools -> Library package manager -> package manager console)
-5. In package manager console write command "Update-Database"
+5. In package manager console execute command "Update-Database"
 6. Run application
