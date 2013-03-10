@@ -182,12 +182,17 @@
     <Compile Include="Migrations\201303100601402_AddLogoColumnToSite.Designer.cs">
       <DependentUpon>201303100601402_AddLogoColumnToSite.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201303101522198_AddDatabaseConstraints.cs" />
+    <Compile Include="Migrations\201303101522198_AddDatabaseConstraints.Designer.cs">
+      <DependentUpon>201303101522198_AddDatabaseConstraints.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\EditSiteViewModel.cs" />
     <Compile Include="Models\Domain\HostingPlan.cs" />
     <Compile Include="Models\Domain\ProviderCustomersContext.cs" />
     <Compile Include="Models\Domain\Site.cs" />
     <Compile Include="Models\HostingPlanViewModel.cs" />
+    <Compile Include="Models\SiteListItemViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -324,6 +329,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201303100601402_AddLogoColumnToSite.resx">
       <DependentUpon>201303100601402_AddLogoColumnToSite.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201303101522198_AddDatabaseConstraints.resx">
+      <DependentUpon>201303101522198_AddDatabaseConstraints.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

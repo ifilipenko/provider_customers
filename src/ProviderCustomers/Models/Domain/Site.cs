@@ -12,9 +12,9 @@ namespace ProviderCustomers.Models.Domain
     {
         [Key]
         public long Id { get; set; }
-        [Required]
+        [Required, StringLength(200)]
         public string Address { get; set; }
-        [Required]
+        [Required, StringLength(4000)]
         public string Description { get; set; }
         public int Rating { get; set; }
         public DateTime LastEdited { get; set; }
