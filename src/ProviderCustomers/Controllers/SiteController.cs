@@ -12,7 +12,7 @@ namespace ProviderCustomers.Controllers
 
         public ActionResult Index()
         {
-            return View(_db.Sites.Include("Plan").ToList());
+            return View(_db.Sites.Include("Plan").ToList().Select(s => new SiteListItemViewModel(s)).ToList());
         }
 
         public ActionResult Create()
@@ -21,7 +21,17 @@ namespace ProviderCustomers.Controllers
             ViewBag.Plans = GetHostingPlans();
             return View("CreateOrEdit");
         }
-        
+
+        public ActionResult Logo(long id)
+        {
+            var site = _db.Sites.Find(id);
+            if (site == null || site.Logo == null)
+            {
+                return HttpNotFound();
+            }
+            return File(site.Logo, "image/" + site.LogoType);
+        }
+
         public ActionResult Edit(long id = 0)
         {
             var site = _db.Sites.Find(id);

@@ -2,7 +2,7 @@
 
 <h2>@ViewBag.Title</h2>
 
-@using (Html.BeginForm("Save", "Site", FormMethod.Post)) {
+@using (Html.BeginForm("Save", "Site", FormMethod.Post, new { enctype = "multipart/form-data" })) {
     @Html.ValidationSummary(true)
 
     <fieldset>
@@ -40,6 +40,16 @@
         <div class="editor-field">
             @Html.DropDownListFor(model => model.PlanId, new SelectList(ViewBag.Plans, "Id", "Name"))
             @Html.ValidationMessageFor(model => model.PlanId)
+        </div>
+
+        <div class="editor-label">
+            <label for="Logo">Logo</label>
+        </div>
+        <div class="editor-field">
+            <img src="@Url.Action("Logo", new {id=Model==null ? 0 : Model.Id})" alt="No logo" style="height: 100px" />
+            <p>
+            Select file: <input type="file" name="Logo" />
+            </p>
         </div>
 
         <p>

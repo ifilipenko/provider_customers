@@ -178,6 +178,10 @@
     <Compile Include="Migrations\201303100448342_RemoveRequiredConstraintFromHostingPlanOfSite.Designer.cs">
       <DependentUpon>201303100448342_RemoveRequiredConstraintFromHostingPlanOfSite.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201303100601402_AddLogoColumnToSite.cs" />
+    <Compile Include="Migrations\201303100601402_AddLogoColumnToSite.Designer.cs">
+      <DependentUpon>201303100601402_AddLogoColumnToSite.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\EditSiteViewModel.cs" />
     <Compile Include="Models\Domain\HostingPlan.cs" />
@@ -317,6 +321,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201303100448342_RemoveRequiredConstraintFromHostingPlanOfSite.resx">
       <DependentUpon>201303100448342_RemoveRequiredConstraintFromHostingPlanOfSite.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201303100601402_AddLogoColumnToSite.resx">
+      <DependentUpon>201303100601402_AddLogoColumnToSite.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

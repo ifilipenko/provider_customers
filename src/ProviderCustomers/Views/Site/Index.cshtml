@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ProviderCustomers.Models.Domain.Site>
+﻿@model IEnumerable<ProviderCustomers.Models.SiteListItemViewModel>
 
 @{
     ViewBag.Title = "Site list";
@@ -35,6 +35,9 @@
 <table id="site-list">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.Logo)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Address)
         </th>
         <th>
@@ -54,6 +57,9 @@
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            <img src="@item.Logo" alt="No logo" style="height: 40px;" />
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Address)
         </td>
