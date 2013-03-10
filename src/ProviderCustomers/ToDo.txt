@@ -1,1 +1,1 @@
-﻿Delete dialog
+﻿Publish schema

@@ -11,7 +11,39 @@
 
     <script type="text/javascript">
 
+        function DeleteDialog() {
+            var self = this;
+
+            $("#delete-confirm-dialog").dialog({
+                modal: true,
+                autoOpen: false,
+                buttons: {
+                    Delete: function () {
+                        $.post("@Url.Action("Delete")", {
+                                id: self.id
+                            }, function(response) {
+                                if (response.redirectUrl) {
+                                    window.location = response.redirectUrl;
+                                }
+                            });
+                        $(this).dialog("close");
+                    },
+                    Cancel: function() {
+                        $(this).dialog("close");
+                    }
+                }
+            });
+
+            self.show = function(siteId, siteName) {
+                self.id = siteId;
+                $("#deleting-site-name").html(siteName);
+                $("#delete-confirm-dialog").dialog("open");
+            };
+        }
+
         $(function() {
+            var deleteDialog = new DeleteDialog();
+
             $(".edit-button").button({
                 icons: {
                     primary: "ui-icon-pencil"
@@ -21,6 +53,10 @@
                 icons: {
                     primary: "ui-icon-trash"
                 }
+            }).click(function() {
+                var siteId = $(this).attr("data-item-id");
+                var siteName = $(this).attr("data-item-name");
+                deleteDialog.show(siteId, siteName);
             });
         });
 
@@ -55,31 +91,34 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            <img src="@item.Logo" alt="No logo" style="height: 40px;" />
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PlanName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Rating)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastEdited)
-        </td>
-        <td>
-            <a class="edit-button" title="Edit" href="@Url.Action("Edit", new { id=item.Id })">Edit</a>
-            <a class="delete-button" title="Delete" href="@Url.Action("Delete", new { id=item.Id })">Delete</a>
-        </td>
-    </tr>
-}
-
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                <img src="@item.Logo" alt="No logo" style="height: 40px;" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PlanName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rating)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastEdited)
+            </td>
+            <td>
+                <a class="edit-button" title="Edit" href="@Url.Action("Edit", new { id=item.Id })">Edit</a>
+                <button class="delete-button" title="Delete" data-item-id="@item.Id" data-item-name="@item.Address">Delete</button>
+            </td>
+        </tr>
+    }
 </table>
+
+<div id="delete-confirm-dialog" title="Create new user">
+    Are you sure you want to delete the site <span id="deleting-site-name"></span>?
+</div>

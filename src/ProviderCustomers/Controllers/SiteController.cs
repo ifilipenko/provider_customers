@@ -76,23 +76,13 @@ namespace ProviderCustomers.Controllers
             return View("CreateOrEdit", model);
         }
 
-        public ActionResult Delete(long id = 0)
-        {
-            var site = _db.Sites.Find(id);
-            if (site == null)
-            {
-                return HttpNotFound();
-            }
-            return View(site);
-        }
-
         [HttpPost, ActionName("Delete")]
         public ActionResult DeleteConfirmed(long id)
         {
             var site = _db.Sites.Find(id);
             _db.Sites.Remove(site);
             _db.SaveChanges();
-            return RedirectToAction("Index");
+            return Json(new {redirectUrl = Url.Action("Index")});
         }
 
         protected override void Dispose(bool disposing)
