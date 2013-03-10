@@ -1,0 +1,79 @@
+﻿@model IEnumerable<ProviderCustomers.Models.Domain.Site>
+
+@{
+    ViewBag.Title = "Site list";
+}
+@section css {
+    @Styles.Render("~/Content/themes/base/css")
+}
+@section scripts {
+    @Scripts.Render("~/bundles/jqueryui")
+
+    <script type="text/javascript">
+
+        $(function() {
+            $(".edit-button").button({
+                icons: {
+                    primary: "ui-icon-pencil"
+                }
+            });
+            $(".delete-button").button({
+                icons: {
+                    primary: "ui-icon-trash"
+                }
+            });
+        });
+
+    </script>
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Add new site", "Create")
+</p>
+<table id="site-list">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rating)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastEdited)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Plan.Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rating)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastEdited)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Plan.Name)
+        </td>
+        <td>
+            <a class="edit-button" title="Edit" href="@Url.Action("Edit", new { id=item.Id })">Edit</a>
+            <a class="delete-button" title="Delete" href="@Url.Action("Delete", new { id=item.Id })">Delete</a>
+        </td>
+    </tr>
+}
+
+</table>

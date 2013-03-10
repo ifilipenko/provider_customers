@@ -37,3 +37,5 @@ Backup*/
 UpgradeLog*.XML
 Thumbs.db
 Desktop.ini
+*.mdf
+*.ldf
