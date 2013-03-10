@@ -18,7 +18,12 @@ namespace ProviderCustomers.Models.Domain
         [DisplayName("Last edited")]
         public DateTime LastEdited { get; set; }
 
-        [Required]
         public HostingPlan Plan { get; set; }
+
+        [DisplayName("Hosting plan")]
+        public string PlanName
+        {
+            get { return Plan == null ? "Not specified" : Plan.Name; }
+        }
     }
 }

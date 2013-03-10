@@ -174,11 +174,16 @@
     <Compile Include="Migrations\201303092042525_SetPlanRequired.Designer.cs">
       <DependentUpon>201303092042525_SetPlanRequired.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201303100448342_RemoveRequiredConstraintFromHostingPlanOfSite.cs" />
+    <Compile Include="Migrations\201303100448342_RemoveRequiredConstraintFromHostingPlanOfSite.Designer.cs">
+      <DependentUpon>201303100448342_RemoveRequiredConstraintFromHostingPlanOfSite.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\EditSiteViewModel.cs" />
     <Compile Include="Models\Domain\HostingPlan.cs" />
     <Compile Include="Models\Domain\ProviderCustomersContext.cs" />
     <Compile Include="Models\Domain\Site.cs" />
+    <Compile Include="Models\HostingPlanViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -309,6 +314,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201303092042525_SetPlanRequired.resx">
       <DependentUpon>201303092042525_SetPlanRequired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201303100448342_RemoveRequiredConstraintFromHostingPlanOfSite.resx">
+      <DependentUpon>201303100448342_RemoveRequiredConstraintFromHostingPlanOfSite.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

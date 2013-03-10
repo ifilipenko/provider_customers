@@ -3,7 +3,7 @@
 <h2>@ViewBag.Title</h2>
 
 @using (Html.BeginForm("Save", "Site", FormMethod.Post)) {
-    @Html.ValidationSummary(false)
+    @Html.ValidationSummary(true)
 
     <fieldset>
         <legend>Site</legend>
@@ -35,18 +35,10 @@
         </div>
 
         <div class="editor-label">
-            @Html.LabelFor(model => model.LastEdited)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.LastEdited)
-            @Html.ValidationMessageFor(model => model.LastEdited)
-        </div>
-
-        <div class="editor-label">
             @Html.LabelFor(model => model.PlanId)
         </div>
         <div class="editor-field">
-            @Html.DropDownListFor(model => model.PlanId, new SelectList(Model.Plans, "Key", "Value"))
+            @Html.DropDownListFor(model => model.PlanId, new SelectList(ViewBag.Plans, "Id", "Name"))
             @Html.ValidationMessageFor(model => model.PlanId)
         </div>
 

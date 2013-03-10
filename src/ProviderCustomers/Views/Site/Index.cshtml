@@ -41,13 +41,13 @@
             @Html.DisplayNameFor(model => model.Description)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.PlanName)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Rating)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.LastEdited)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Plan.Name)
         </th>
         <th></th>
     </tr>
@@ -61,13 +61,13 @@
             @Html.DisplayFor(modelItem => item.Description)
         </td>
         <td>
+            @Html.DisplayFor(modelItem => item.PlanName)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Rating)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.LastEdited)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Plan.Name)
         </td>
         <td>
             <a class="edit-button" title="Edit" href="@Url.Action("Edit", new { id=item.Id })">Edit</a>

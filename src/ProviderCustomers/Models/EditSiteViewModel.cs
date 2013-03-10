@@ -14,19 +14,12 @@ namespace ProviderCustomers.Models
         {
         }
 
-        public EditSiteViewModel(IEnumerable<HostingPlan> plans)
-        {
-            Plans = plans.ToDictionary(x => x.Id, x => x.Name);
-        }
-
-        public EditSiteViewModel(Site site, IEnumerable<HostingPlan> plans)
-            : this(plans)
+        public EditSiteViewModel(Site site)
         {
             Id          = site.Id;
             Address     = site.Address;
             Description = site.Description;
             Rating      = site.Rating;
-            LastEdited  = site.LastEdited;
             if (site.Plan != null)
             {
                 PlanId = site.Plan.Id;
@@ -50,13 +43,8 @@ namespace ProviderCustomers.Models
 
         public int Rating { get; set; }
 
-        [DisplayName("Last edited")]
-        public DateTime LastEdited { get; set; }
-
-        [Required, DisplayName("Plan")]
-        public long PlanId { get; set; }
-
-        public Dictionary<long, string> Plans { get; set; }
+        [DisplayName("Plan")]
+        public long? PlanId { get; set; }
 
         public void SaveSite(Site site, IEnumerable<HostingPlan> allPlans)
         {
@@ -64,8 +52,8 @@ namespace ProviderCustomers.Models
             site.Address     = Address;
             site.Description = Description;
             site.Rating      = Rating;
-            site.LastEdited  = LastEdited;
-            site.Plan        = allPlans.Single(p => p.Id == PlanId);
+            site.LastEdited  = DateTime.Now;
+            site.Plan        = allPlans.SingleOrDefault(p => p.Id == PlanId);
         }
     }
 }

@@ -18,7 +18,8 @@ namespace ProviderCustomers.Controllers
         public ActionResult Create()
         {
             SetSiteEditTitle(isNew: true);
-            return View("CreateOrEdit", GetEditViewModel());
+            ViewBag.Plans = GetHostingPlans();
+            return View("CreateOrEdit");
         }
         
         public ActionResult Edit(long id = 0)
@@ -29,7 +30,8 @@ namespace ProviderCustomers.Controllers
                 return HttpNotFound();
             }
             SetSiteEditTitle(isNew: false);
-            return View("CreateOrEdit", GetEditViewModel(site));
+            ViewBag.Plans = GetHostingPlans();
+            return View("CreateOrEdit", new EditSiteViewModel(site));
         }
 
         [HttpPost]
@@ -60,6 +62,7 @@ namespace ProviderCustomers.Controllers
                 return RedirectToAction("Index");
             }
             SetSiteEditTitle(model.IsNew);
+            ViewBag.Plans = GetHostingPlans();
             return View("CreateOrEdit", model);
         }
 
@@ -93,11 +96,13 @@ namespace ProviderCustomers.Controllers
             ViewBag.Title = isNew ? "Create new site" : "Edit site";
         }
 
-        private EditSiteViewModel GetEditViewModel(Site site = null)
+        private HostingPlanViewModel[] GetHostingPlans()
         {
-            return site == null
-                       ? new EditSiteViewModel(_db.HostingPlans.ToList())
-                       : new EditSiteViewModel(site, _db.HostingPlans.ToList());
+            var plans = _db.HostingPlans.ToList();
+            var empty = new[] {new HostingPlanViewModel(null, "Not specified")};
+            return empty.Concat(plans.OrderBy(p => p.Name)
+                                     .Select(p => new HostingPlanViewModel(p.Id, p.Name)))
+                        .ToArray();
         }
     }
 }

@@ -1,4 +1,3 @@
-﻿Optional value for plan drop down
-Text formatting for plan drop down
+﻿Text formatting for plan drop down
 Logo upload
 Delete dialog
